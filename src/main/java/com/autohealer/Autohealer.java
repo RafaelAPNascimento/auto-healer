@@ -16,7 +16,7 @@ public class Autohealer implements Watcher {
     private final int NUMBER_OF_WORKERS;
     private final String PATH_TO_WORKER_JAR;
 
-    private static final String AUTOHEALER_ZNODES_PATH = "/clinic_adm";
+    private static final String AUTOHEALER_ZNODES_PATH = "/throughput";
 
     private static final String ZK_ADDRESS = "localhost:2181";
     private static final int ZK_SESSION_TIMEOUT = 3000;
