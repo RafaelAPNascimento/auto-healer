@@ -21,6 +21,8 @@ public class Autohealer implements Watcher {
     private static final String ZK_ADDRESS = "localhost:2181";
     private static final int ZK_SESSION_TIMEOUT = 3000;
 
+    private int availableStartingPorts = 8080;
+
     private ZooKeeper zooKeeper;
 
     public Autohealer(int numberOfWorkers, String pathToWorkerProgram) {
@@ -51,7 +53,8 @@ public class Autohealer implements Watcher {
 
         LOG.info("Launching new worker...");
         File jar = new File(PATH_TO_WORKER_JAR);
-        String cmd = "java -jar " + jar.getCanonicalPath();
+                                                    // in a real cluster we wouldn't need to increment this
+        String cmd = "java -jar " + jar.getCanonicalPath() + " " + availableStartingPorts++;
         Runtime.getRuntime().exec(cmd, null, jar.getParentFile());
     }
 
